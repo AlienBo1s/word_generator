@@ -1,13 +1,12 @@
 from urllib.request import urlopen
 import random
-
+from time import sleep
 
 alphabet = "abcdefghijklmnopqrstuvwxyz" # alphabet
 
 url = "https://www.dictionary.com/browse/" # url to dictionary
 
 print("Welcome to the word generator and checker!")
-print("Please enter a number between 1 and 10 to choose the length of the word you want to generate.")
 print("If you want to check a word, enter 11.")
 print("If you want to quit, enter 0.") 
 
@@ -26,25 +25,32 @@ if input_number == 11:
     html = html.decode("utf-8")
     if "No results found" in html:
         print("The word is not found in the dictionary.")
+        sleep(10)
         exit()
     else:
         print("The word is found in the dictionary.")
+        sleep(10)
         exit()
 
-if input_number < 10 or input_number > 1:
+class gen_num:
     rand_word = random.choices(alphabet, k=input_number) # generate a random word
     rand_word = ''.join(rand_word) # convert the list to a string
     print("Your word is: " + rand_word)
     print("Checking the word...")
     url = url + rand_word # add the word to the url
-    response = urlopen(url) # open the url
-    html = response.read() # read the html
-    html = html.decode("utf-8") # decode the html
     try:
-        if "No results found for " in html:
+        response = urlopen(url) # open the url
+        html = response.read() # read the response
+        html = html.decode("utf-8") # decode the response
+        if "No results found" in html:
             print("The word is not found in the dictionary.")
-        else:
+            sleep(10)
+            exit()
+        else:   
             print("The word is found in the dictionary.")
+            sleep(10)
+            exit()
     except:
         print("The word is not found in the dictionary.")
-   
+        sleep(10)
+        exit()
