@@ -7,6 +7,7 @@ alphabet = "abcdefghijklmnopqrstuvwxyz" # alphabet
 url = "https://www.dictionary.com/browse/" # url to dictionary
 
 print("Welcome to the word generator and checker!")
+print("Enter the number of letters you want in your word.")
 print("If you want to check a word, enter 11.")
 print("If you want to quit, enter 0.") 
 
@@ -26,11 +27,9 @@ if input_number == 11:
     if "No results found" in html:
         print("The word is not found in the dictionary.")
         sleep(10)
-        exit()
     else:
         print("The word is found in the dictionary.")
         sleep(10)
-        exit()
 
 class gen_num:
     rand_word = random.choices(alphabet, k=input_number) # generate a random word
@@ -45,12 +44,10 @@ class gen_num:
         if "No results found" in html:
             print("The word is not found in the dictionary.")
             sleep(10)
-            exit()
         else:   
             print("The word is found in the dictionary.")
+            
             sleep(10)
-            exit()
     except:
         print("The word is not found in the dictionary.")
         sleep(10)
-        exit()
